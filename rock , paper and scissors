@@ -1,0 +1,42 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class RockPaperScissors {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner scanner = new Scanner(System.in);
+        String[] choices = {"Rock", "Paper", "Scissors"};
+        int userWins = 0;
+        int computerWins = 0;
+
+        while (true) {
+            System.out.println("Enter your choice (Rock, Paper, Scissors, or Quit):");
+            String userChoice = scanner.nextLine();
+
+            if (userChoice.equalsIgnoreCase("Quit")) {
+                break;
+            }
+
+            int computerChoiceIndex = rand.nextInt(3);
+            String computerChoice = choices[computerChoiceIndex];
+
+            System.out.println("Computer chose: " + computerChoice);
+
+            if (userChoice.equalsIgnoreCase(computerChoice)) {
+                System.out.println("It's a tie!");
+            } else if ((userChoice.equalsIgnoreCase("Rock") && computerChoice.equals("Scissors")) ||
+                       (userChoice.equalsIgnoreCase("Paper") && computerChoice.equals("Rock")) ||
+                       (userChoice.equalsIgnoreCase("Scissors") && computerChoice.equals("Paper"))) {
+                System.out.println("You win!");
+                userWins++;
+            } else {
+                System.out.println("Computer wins!");
+                computerWins++;
+            }
+
+            System.out.println("Score: You - " + userWins + ", Computer - " + computerWins);
+        }
+
+        System.out.println("Thanks for playing!");
+    }
+}
